@@ -1397,9 +1397,24 @@ function doLogin(){
       return;
     }
     return signIn(auth,email,p);
-  }).then(cred=>{
+  }).then(async cred=>{
     if(!cred)return;
-    // onAuthStateChanged handle edecek
+    // Veriyi yükle ve uygulamayı başlat
+    currentUser=cred.user.uid;
+    const snap=await getDoc(doc(db,"users",currentUser));
+    if(snap.exists()){
+      const d=snap.data();
+      currentUsername=d.username||u;
+      S=d.data||{workers:[],attendance:{},avans:[],settings:{notif:false,notifType:null}};
+      if(!S.workers)S.workers=[];
+      if(!S.attendance)S.attendance={};
+      if(!S.avans)S.avans=[];
+      if(!S.settings)S.settings={notif:false,notifType:null};
+      if(d.profile)S.profile=d.profile;
+    }
+    hideAuth();
+    if(!S.profile)showProfileSetup();
+    else startApp();
   }).catch(e=>{
     btn.disabled=false;btn.textContent="Giriş Yap";
     if(e.code==="auth/wrong-password"||e.code==="auth/invalid-credential")
@@ -1446,7 +1461,12 @@ function doRegister(){
       data:initData,
       profile:null
     });
-    // onAuthStateChanged handle edecek
+    // Direkt uygulamayı başlat
+    currentUser=uid;
+    currentUsername=u;
+    S=initData;
+    hideAuth();
+    showProfileSetup();
   }).catch(e=>{
     if(e.message==="username_taken")return;
     btn.disabled=false;btn.textContent="Hesap Oluştur";
