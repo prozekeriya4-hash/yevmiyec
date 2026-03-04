@@ -1,8 +1,8 @@
 // Yevmiye Defterim - Service Worker v1.0
 const CACHE_NAME = 'yevmiye-v1';
 const urlsToCache = [
-  '/yevmiyec/',
-  '/yevmiyec/index.html'
+  './',
+  './index.html'
 ];
 
 // Kurulum
@@ -34,7 +34,7 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
       return response || fetch(event.request).catch(() => {
-        return caches.match('/yevmiyec/index.html');
+        return caches.match('./index.html');
       });
     })
   );
@@ -51,13 +51,13 @@ self.addEventListener('push', event => {
 
   const options = {
     body: data.body || 'Bugün yevmiye yazdın mı?',
-    icon: '/yevmiyec/icon-192.png',
-    badge: '/yevmiyec/icon-192.png',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
     vibrate: [200, 100, 200],
     tag: 'yevmiye-daily',
     renotify: true,
     requireInteraction: false,
-    data: { url: '/yevmiyec/' },
+    data: { url: './' },
     actions: [
       { action: 'open', title: '✅ Aç' },
       { action: 'dismiss', title: 'Kapat' }
@@ -76,11 +76,11 @@ self.addEventListener('notificationclick', event => {
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
       for (const client of clientList) {
-        if (client.url.includes('/yevmiyec/') && 'focus' in client) {
+        if (client.url.includes('./') && 'focus' in client) {
           return client.focus();
         }
       }
-      return clients.openWindow('/yevmiyec/');
+      return clients.openWindow('./');
     })
   );
 });

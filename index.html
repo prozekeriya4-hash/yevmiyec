@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Yevmiye Defterim</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#6B0F2B">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Yevmiye">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1627,7 +1628,7 @@ const FCM_VAPID = "BDko9puOhZSS8t-0NJ_YRXhLJBLFtsoY177OJPAczxvURvXX62XMT6kCaFc4S
 async function registerSWAndFCM(){
   if(!('serviceWorker' in navigator))return;
   try{
-    const reg = await navigator.serviceWorker.register('/yevmiyec/sw.js');
+    const reg = await navigator.serviceWorker.register('./sw.js');
     console.log('SW registered');
     // Bildirim izni iste
     const permission = await Notification.requestPermission();

@@ -2,8 +2,8 @@
   "name": "Yevmiye Defterim",
   "short_name": "Yevmiye",
   "description": "İşçi takip ve yevmiye yönetim uygulaması",
-  "start_url": "/yevmiyec/",
-  "scope": "/yevmiyec/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#6B0F2B",
@@ -11,19 +11,23 @@
   "lang": "tr",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/prozekeriya4-hash/yevmiyec/main/icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://raw.githubusercontent.com/prozekeriya4-hash/yevmiyec/main/icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["business", "productivity", "finance"],
+  "categories": [
+    "business",
+    "productivity",
+    "finance"
+  ],
   "screenshots": [],
   "prefer_related_applications": false
 }
