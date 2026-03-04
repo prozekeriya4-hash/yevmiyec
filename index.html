@@ -1627,7 +1627,7 @@ const FCM_VAPID = "BDko9puOhZSS8t-0NJ_YRXhLJBLFtsoY177OJPAczxvURvXX62XMT6kCaFc4S
 async function registerSWAndFCM(){
   if(!('serviceWorker' in navigator))return;
   try{
-    const reg = await navigator.serviceWorker.register('/yevmiye/sw.js');
+    const reg = await navigator.serviceWorker.register('/yevmiyec/sw.js');
     console.log('SW registered');
     // Bildirim izni iste
     const permission = await Notification.requestPermission();
