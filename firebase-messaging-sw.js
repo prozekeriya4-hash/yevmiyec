@@ -1,5 +1,5 @@
 // Firebase Messaging Service Worker
-// Bu dosya /yevmiye/ klasöründe olmalı
+// Bu dosya /yevmiyec/ klasöründe olmalı
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
 
@@ -19,12 +19,12 @@ messaging.onBackgroundMessage(payload => {
   const { title, body, icon } = payload.notification || {};
   self.registration.showNotification(title || '📋 Yevmiye Defterim', {
     body: body || 'Bugün yevmiye yazdın mı?',
-    icon: icon || '/yevmiye/icon-192.png',
-    badge: '/yevmiye/icon-192.png',
+    icon: icon || '/yevmiyec/icon-192.png',
+    badge: '/yevmiyec/icon-192.png',
     vibrate: [200, 100, 200],
     tag: 'yevmiye-daily',
     renotify: true,
-    data: { url: '/yevmiye/' }
+    data: { url: '/yevmiyec/' }
   });
 });
 
@@ -33,9 +33,9 @@ self.addEventListener('notificationclick', event => {
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
       for (const client of clientList) {
-        if (client.url.includes('/yevmiye/') && 'focus' in client) return client.focus();
+        if (client.url.includes('/yevmiyec/') && 'focus' in client) return client.focus();
       }
-      return clients.openWindow('/yevmiye/');
+      return clients.openWindow('/yevmiyec/');
     })
   );
 });
